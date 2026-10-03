@@ -1,0 +1,19 @@
+{
+  "name": "Fungus",
+  "version": "3.13.8",
+  "description": "Utilities code",
+  "displayName": "Fungus",
+  "unity": "2019.4",
+  "author": {
+    "name": "Chris Gregan",
+    "url": "https://github.com/chrisgregan",
+    "email": ""
+  },
+  "changelogUrl": "https://github.com/snozbot/fungus/wiki/installation",
+  "documentationUrl": "https://github.com/snozbot/fungus/wiki/installation",
+  "keywords": [
+    "Utilities"
+  ],
+  "license": "MIT",
+  "type": "tool"
+}
