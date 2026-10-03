@@ -26,14 +26,14 @@ namespace Fungus
         static Texture2D TextureIcon { get { return Fungus.EditorUtils.FungusEditorResources.FungusMushroom; } }
 
         //sorted list of the GO instance IDs that have flowcharts on them
-        static List<int> flowchartIDs = new List<int>();
+        static List<EntityId> flowchartIDs = new();
 
         static bool initalHierarchyCheckFlag = true;
 
         static HierarchyIcons()
         {
             initalHierarchyCheckFlag = true;
-            EditorApplication.hierarchyWindowItemOnGUI += HierarchyIconCallback;
+            EditorApplication.hierarchyWindowItemByEntityIdOnGUI += HierarchyIconCallback;
 #if UNITY_2018_1_OR_NEWER
             EditorApplication.hierarchyChanged += HierarchyChanged;
 #else
@@ -49,16 +49,16 @@ namespace Fungus
             if (EditorUtils.FungusEditorPreferences.hideMushroomInHierarchy)
                 return;
 
-            var flowcharts = GameObject.FindObjectsOfType<Flowchart>();
+            var flowcharts = GameObject.FindObjectsByType<Flowchart>();
 
-            flowchartIDs = flowcharts.Select(x => x.gameObject.GetInstanceID()).Distinct().ToList();
+            flowchartIDs = flowcharts.Select(x => x.gameObject.GetEntityId()).Distinct().ToList();
             flowchartIDs.Sort();
         }
 
         //Draw icon if the isntance id is in our cached list
-        static void HierarchyIconCallback(int instanceID, Rect selectionRect)
+        static void HierarchyIconCallback(EntityId entityID, Rect selectionRect)
         {
-            if(initalHierarchyCheckFlag)
+            if (initalHierarchyCheckFlag)
             {
                 HierarchyChanged();
                 initalHierarchyCheckFlag = false;
@@ -80,7 +80,7 @@ namespace Fungus
 
             //binary search as it is much faster to cache and int bin search than GetComponent
             //  should be less GC too
-            if (flowchartIDs.BinarySearch(instanceID) >= 0)
+            if (flowchartIDs.BinarySearch(entityID) >= 0)
                 GUI.Label(r, TextureIcon);
         }
     }
