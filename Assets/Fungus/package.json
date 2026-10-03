@@ -1,13 +1,12 @@
 {
-  "name": "Fungus",
+  "name": "com.fungus",
   "version": "3.13.8",
-  "description": "Utilities code",
+  "description": "The goal of Fungus is to provide a free, open source tool for creating interactive storytelling games in Unity 3D.",
   "displayName": "Fungus",
   "unity": "2019.4",
   "author": {
     "name": "Chris Gregan",
-    "url": "https://github.com/chrisgregan",
-    "email": ""
+    "url": "https://github.com/chrisgregan"
   },
   "changelogUrl": "https://github.com/snozbot/fungus/wiki/installation",
   "documentationUrl": "https://github.com/snozbot/fungus/wiki/installation",
